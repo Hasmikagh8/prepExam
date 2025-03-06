@@ -1,21 +1,22 @@
-//import { resultJson } from "../fixtures/results.json";
+import { createUser } from "../fixtures/results.json";
 
-Cypress.Commands.add("getProduct", () => {
+Cypress.Commands.add("listUsers", () => {
   cy.request({
-    url: `${Cypress.env("globalUrl")}/api/productsList`,
+    url: `${Cypress.env("baseUrl")}/api/users?page=2`,
     followRedirect: false,
   }).then((response) => {
     return response;
   });
 });
 
-//  body: results.products[0]
-
-Cypress.Commands.add("getAllProductsList", () => {
+Cypress.Commands.add("createUser", () => {
   cy.request({
-    url: "https://automationexercise.com/api/productsList",
+    //url: `${Cypress.config("baseUrl")}/api/users?page=2`,
+    method: "Post",
+    url : "https://reqres.in/api/users",
+    body: createUser,
     followRedirect: false,
-  }).then((resp) => {
-    return resp;
+  }).then((response) => {
+    return response;
   });
 });
